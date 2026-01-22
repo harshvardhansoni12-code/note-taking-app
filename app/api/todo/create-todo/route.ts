@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
@@ -19,9 +19,10 @@ export async function POST(req: NextRequest) {
         date: body.date,
         task: body.task,
         status: false,
-        authorId: parseInt(session.user.id),
+        authorId: Number(session.user.id),
       },
     });
+    console.log("After todo ");
     return NextResponse.json(todoCreated);
   } catch (error) {
     return NextResponse.json({ message: "Todo not created" }, { status: 500 });

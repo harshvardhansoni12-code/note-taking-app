@@ -14,7 +14,6 @@ const createTodo = () => {
       day,
       date,
       task,
-      status,
     });
     if (todo) {
       toast.success("TODO Created");
