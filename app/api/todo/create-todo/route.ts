@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
     console.log("After todo ");
     return NextResponse.json(todoCreated);
   } catch (error) {
+    console.error("Error creating todo:", error);
     return NextResponse.json({ message: "Todo not created" }, { status: 500 });
   }
 }

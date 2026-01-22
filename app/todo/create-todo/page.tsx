@@ -17,7 +17,7 @@ const createTodo = () => {
     });
     if (todo) {
       toast.success("TODO Created");
-      router.push("todo/get-todo");
+      router.push("/todo/get-todo");
     }
   };
   return (

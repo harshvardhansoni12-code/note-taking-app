@@ -6,29 +6,30 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  output   = "../app/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String?
-  email     String
-  password  String
-  todos     Todo[]
+model User{
+  id Int @default(autoincrement()) @id
+  name String?
+  email String
+  password String
+  todos Todo[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Todo {
-  id       Int     @id @default(autoincrement())
-  day      String
-  date     String
-  task     String
-  status   Boolean @default(false)
-  author   User    @relation(fields: [authorId], references: [id]) // This defines the relation to the User model 
-  authorId Int
+
+model Todo{
+  id Int @default(autoincrement()) @id
+  day String 
+  date String
+  task String
+  status Boolean @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId Int // This defines the relation to the User model 
 }
