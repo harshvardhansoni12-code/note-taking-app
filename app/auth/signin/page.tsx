@@ -21,6 +21,8 @@ const SignIn = () => {
         router.refresh();
       } else {
         toast.error("Login failed: " + (result?.error || "Unknown error"));
+        router.push("/");
+        router.refresh();
       }
     } catch (e) {
       console.error("Login error:", e);

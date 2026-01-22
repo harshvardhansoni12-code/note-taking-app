@@ -20,7 +20,7 @@ export default function UserProfile() {
       <>
         <button
           onClick={() => {
-            signIn();
+            router.push("/auth/signin");
           }}
         >
           signIn
