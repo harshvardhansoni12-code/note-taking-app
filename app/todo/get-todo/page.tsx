@@ -27,6 +27,9 @@ const TodoPage = () => {
       ) : (
         <>
           <>kuch kaam dhanda krle bsdk</>
+          <>(todos.map((todo) => (
+            <div key={todo.id}><span>{todo.task}</span></div>
+          )))</>
         </>
       )}
     </>
