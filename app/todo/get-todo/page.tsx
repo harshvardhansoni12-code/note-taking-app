@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const TodoPage = () => {
-  const [todos, setTodos] = useState("");
+  const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // Fetch todos here
@@ -13,24 +13,16 @@ const TodoPage = () => {
       if (!todo) {
         toast.error("errors");
       }
-      const data = await todo.json();
-      setTodos(data);
+
+      const res = await todo.json();
+      console.log(res);
+      setTodos(res.data);
       setLoading(false);
     };
     Todo();
   }, []);
 
-  return (
-    <>
-      {loading ? (
-        <>loading.....</>
-      ) : (
-        <>
-          <>kuch kaam dhanda krle bsdk</>
-        </>
-      )}
-    </>
-  );
+  return <>{loading ? <>loading.....</> : <></>}</>;
 };
 //this he can see the todos created by authenticated user
 export default TodoPage;
