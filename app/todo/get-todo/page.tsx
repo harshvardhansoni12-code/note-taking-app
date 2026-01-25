@@ -7,22 +7,42 @@ const TodoPage = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    // Fetch todos here
-    const Todo = async () => {
-      const todo = await fetch("/api/todo/get-todo");
-      if (!todo) {
-        toast.error("errors");
+    const fetchTodos = async () => {
+      try {
+        const response = await fetch("/api/todo/get-todo");
+        if (response.ok) {
+          const data = await response.json();
+          setTodos(data);
+        } else {
+          toast.error("Failed to fetch todos");
+        }
+      } catch (error) {
+        toast.error("Error fetching todos");
+      } finally {
+        setLoading(false);
       }
-
-      const res = await todo.json();
-      console.log(res);
-      setTodos(res.data);
-      setLoading(false);
     };
-    Todo();
+    fetchTodos();
   }, []);
 
-  return <>{loading ? <>loading.....</> : <></>}</>;
+  return (
+    <>
+      <>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <ul>
+            {todos.map((todo: any) => (
+              <li key={todo.id}>
+                {todo.task} - {todo.date} - {todo.day} - Status:{" "}
+                {todo.status ? "Done" : "Pending"}
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
+    </>
+  );
 };
 //this he can see the todos created by authenticated user
 export default TodoPage;
