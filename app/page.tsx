@@ -9,10 +9,6 @@ export default function UserProfile() {
   const router = useRouter();
   console.log(session);
   // Handle loading state
-  if (status === "loading") {
-    return <p>Loading session...</p>;
-  }
-
   // Handle unauthenticated state (e.g., redirect to login page)
   if (status === "unauthenticated") {
     // You could also use a redirect callback in NextAuth config
